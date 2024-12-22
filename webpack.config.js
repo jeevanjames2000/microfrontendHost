@@ -9,32 +9,11 @@ const printCompilationMessage = require("./compilation.config.js");
 
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:5000/",
+    publicPath: "http://localhost:8080/",
   },
 
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-  },
-
-  devServer: {
-    port: 5000,
-    historyApiFallback: true,
-    watchFiles: [path.resolve(__dirname, "src")],
-    onListening: function (devServer) {
-      const port = devServer.server.address().port;
-
-      printCompilationMessage("compiling", port);
-
-      devServer.compiler.hooks.done.tap("OutputMessagePlugin", (stats) => {
-        setImmediate(() => {
-          if (stats.hasErrors()) {
-            printCompilationMessage("failure", port);
-          } else {
-            printCompilationMessage("success", port);
-          }
-        });
-      });
-    },
   },
 
   module: {
@@ -70,12 +49,12 @@ module.exports = (_, argv) => ({
         // body: "body@http://localhost:5003/remoteEntry.js",
       },
       exposes: {
-        "./theme": "./src/theme.jsx",
-        "./database": "./src/Database.js",
-        "./store": "./src/store/store.js",
-        "./hostSlice": "./src/store/slice/hostSlice.js",
-        "./cartSlice": "./src/store/slice/cartSlice.js",
-        "./configSlice": "./src/store/slice/configSlice.js",
+        // "./theme": "./src/theme.jsx",
+        // "./database": "./src/Database.js",
+        // "./store": "./src/store/store.js",
+        // "./hostSlice": "./src/store/slice/hostSlice.js",
+        // "./cartSlice": "./src/store/slice/cartSlice.js",
+        // "./configSlice": "./src/store/slice/configSlice.js",
       },
 
       shared: {
