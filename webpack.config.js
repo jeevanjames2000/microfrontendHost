@@ -44,12 +44,12 @@ module.exports = {
         // body: "body@http://localhost:5003/remoteEntry.js",
       },
       exposes: {
-        // "./theme": "./src/theme.jsx",
-        // "./database": "./src/Database.js",
-        // "./store": "./src/store/store.js",
-        // "./hostSlice": "./src/store/slice/hostSlice.js",
-        // "./cartSlice": "./src/store/slice/cartSlice.js",
-        // "./configSlice": "./src/store/slice/configSlice.js",
+        "./theme": "./src/theme.jsx",
+        "./database": "./src/Database.js",
+        "./store": "./src/store/store.js",
+        "./hostSlice": "./src/store/slice/hostSlice.js",
+        "./cartSlice": "./src/store/slice/cartSlice.js",
+        "./configSlice": "./src/store/slice/configSlice.js",
       },
 
       shared: {
