@@ -4,15 +4,11 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = {
   output: {
-    publicPath: "http://localhost:5000/",
+    publicPath: "http://localhost:8080/",
   },
 
   resolve: {
     extensions: [".jsx", ".js", ".json"],
-  },
-
-  devServer: {
-    port: 5000,
   },
 
   module: {
@@ -42,8 +38,20 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "starter",
       filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
+      remotes: {
+        // head: "head@http://localhost:5001/remoteEntry.js",
+        // solid: "crossplatform@http://localhost:5002/remoteEntry.js",
+        // body: "body@http://localhost:5003/remoteEntry.js",
+      },
+      exposes: {
+        // "./theme": "./src/theme.jsx",
+        // "./database": "./src/Database.js",
+        // "./store": "./src/store/store.js",
+        // "./hostSlice": "./src/store/slice/hostSlice.js",
+        // "./cartSlice": "./src/store/slice/cartSlice.js",
+        // "./configSlice": "./src/store/slice/configSlice.js",
+      },
+
       shared: {
         ...deps,
         react: {
