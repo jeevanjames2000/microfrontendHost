@@ -36,7 +36,7 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "starter",
+      name: "host",
       filename: "remoteEntry.js",
       remotes: {
         // head: "head@http://localhost:5001/remoteEntry.js",
