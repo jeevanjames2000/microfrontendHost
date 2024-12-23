@@ -7,11 +7,11 @@ module.exports = (_, argv) => ({
   output: {
     publicPath:
       argv.mode === "development"
-        ? "http://localhost:8080/"
+        ? "http://localhost:5000/"
         : "https://microfrontend-host.vercel.app/",
   },
   devServer: {
-    port: 8080,
+    port: 5000,
   },
   resolve: {
     extensions: [".jsx", ".js", ".json"],
@@ -45,9 +45,15 @@ module.exports = (_, argv) => ({
       name: "host",
       filename: "remoteEntry.js",
       remotes: {
-        head: "head@https://micro-frontend-head.vercel.app/remoteEntry.js",
+        head:
+          argv.mode === "development"
+            ? "head@http://localhost:5001/remoteEntry.js"
+            : "head@https://micro-frontend-head.vercel.app/remoteEntry.js",
         // // solid: "crossplatform@http://localhost:5002/remoteEntry.js",
-        body: "body@https://micro-frontend-body.vercel.app/remoteEntry.js",
+        body:
+          argv.mode === "development"
+            ? "body@http://localhost:5002/remoteEntry.js"
+            : "body@https://micro-frontend-body.vercel.app/remoteEntry.js",
       },
       exposes: {
         "./theme": "./src/theme.jsx",

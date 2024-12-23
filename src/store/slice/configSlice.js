@@ -1,29 +1,35 @@
-// store/hostSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const configSlice = createSlice({
   name: "config",
   initialState: {
     mainRoute: false,
-    searchRoute: [
-      {
-        search: false,
-      },
-    ],
+    searchRoute: {
+      isSearching: false,
+      results: [],
+    },
     profile: [],
+    compHide: false,
   },
   reducers: {
     home: (state, action) => {
       state.mainRoute = action.payload;
     },
-    search: (state, action) => {
-      state.searchRoute = action.payload;
+    startSearch: (state, action) => {
+      state.searchRoute.isSearching = action.payload;
+    },
+    setSearchResults: (state, action) => {
+      state.searchRoute.results = action.payload;
     },
     profile: (state, action) => {
-      state.profileStore = action.payload;
+      state.profile = action.payload;
+    },
+    componentHide: (state, action) => {
+      state.compHide = action.payload;
     },
   },
 });
 
-export const { home, search, profile } = configSlice.actions;
+export const { home, startSearch, setSearchResults, profile, componentHide } =
+  configSlice.actions;
 export default configSlice.reducer;
