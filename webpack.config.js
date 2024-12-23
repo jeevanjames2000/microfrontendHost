@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const Dotenv = require("dotenv-webpack");
 
 const deps = require("./package.json").dependencies;
 module.exports = {
@@ -39,9 +40,9 @@ module.exports = {
       name: "host",
       filename: "remoteEntry.js",
       remotes: {
-        // head: "head@http://localhost:5001/remoteEntry.js",
+        head: "head@https://micro-frontend-head.vercel.app/remoteEntry.js",
         // solid: "crossplatform@http://localhost:5002/remoteEntry.js",
-        // body: "body@http://localhost:5003/remoteEntry.js",
+        body: "body@https://micro-frontend-body.vercel.app//remoteEntry.js",
       },
       exposes: {
         "./theme": "./src/theme.jsx",
@@ -67,5 +68,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
     }),
+    new Dotenv(),
   ],
 };
