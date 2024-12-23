@@ -11,6 +11,9 @@ module.exports = {
   resolve: {
     extensions: [".jsx", ".js", ".json"],
   },
+  devServer: {
+    port: 8080,
+  },
 
   module: {
     rules: [
@@ -42,7 +45,7 @@ module.exports = {
       remotes: {
         head: "head@https://micro-frontend-head.vercel.app/remoteEntry.js",
         // solid: "crossplatform@http://localhost:5002/remoteEntry.js",
-        body: "body@https://micro-frontend-body.vercel.app//remoteEntry.js",
+        body: "body@https://micro-frontend-body.vercel.app/remoteEntry.js",
       },
       exposes: {
         "./theme": "./src/theme.jsx",
