@@ -3,16 +3,16 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const Dotenv = require("dotenv-webpack");
 
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (_, argv) => ({
   output: {
-    publicPath: "https://microfrontend-host.vercel.app/",
+    publicPath:
+      argv.mode === "development"
+        ? "http://localhost:8080/"
+        : "https://microfrontend-host.vercel.app",
   },
 
   resolve: {
     extensions: [".jsx", ".js", ".json"],
-  },
-  devServer: {
-    port: 8080,
   },
 
   module: {
@@ -44,7 +44,7 @@ module.exports = {
       filename: "remoteEntry.js",
       remotes: {
         head: "head@https://micro-frontend-head.vercel.app/remoteEntry.js",
-        // solid: "crossplatform@http://localhost:5002/remoteEntry.js",
+        // // solid: "crossplatform@http://localhost:5002/remoteEntry.js",
         body: "body@https://micro-frontend-body.vercel.app/remoteEntry.js",
       },
       exposes: {
@@ -73,4 +73,4 @@ module.exports = {
     }),
     new Dotenv(),
   ],
-};
+});
