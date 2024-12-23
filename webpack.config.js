@@ -10,7 +10,9 @@ module.exports = (_, argv) => ({
         ? "http://localhost:8080/"
         : "https://microfrontend-host.vercel.app",
   },
-
+  devServer: {
+    port: 8080,
+  },
   resolve: {
     extensions: [".jsx", ".js", ".json"],
   },
